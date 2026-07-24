@@ -1,0 +1,46 @@
+{
+  "entities": {
+    "users": {
+      "title": "User Profiles",
+      "description": "Profile information of observers",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "email": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "displayName"]
+    },
+    "observations": {
+      "title": "Observations",
+      "description": "Multi-modal observation entries captured by observers",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "observerName": { "type": "string" },
+        "observerPhoto": { "type": "string" },
+        "type": { "type": "string", "enum": ["nfc", "qr", "object", "ocr", "manual"] },
+        "title": { "type": "string" },
+        "summary": { "type": "string" },
+        "rawContent": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "location": {
+          "type": "object",
+          "properties": {
+            "latitude": { "type": "number" },
+            "longitude": { "type": "number" },
+            "accuracy": { "type": "number" },
+            "address": { "type": "string" }
+          }
+        },
+        "visibility": { "type": "string", "enum": ["private", "authenticated", "public"] },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "metadata": { "type": "object" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "type", "title", "visibility", "createdAt"]
+    }
+  }
+}
